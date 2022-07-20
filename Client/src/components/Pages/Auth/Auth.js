@@ -32,7 +32,7 @@ function Auth() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const [dob, setDob] = useState(new Date());
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -45,11 +45,10 @@ function Auth() {
       if (!name) {
         alert("Enter a name to continue");
       }
-      dispatch(signup({ name, email, password }, navigate));
+      dispatch(signup({ name, email, password, dob }, navigate));
     } else {
       dispatch(login({ email, password }, navigate));
     }
-    // console.log(name, email, password);
   };
 
   const handleSwitch = () => {
@@ -86,6 +85,19 @@ function Auth() {
                 }}
               />
             </label>
+            {IsSignUp && (
+              <label htmlFor="date">
+                <h4>Display Name</h4>
+                <input
+                  type="date"
+                  name="date"
+                  id="date"
+                  onChange={(e) => {
+                    setDob(e.target.value);
+                  }}
+                />
+              </label>
+            )}
             <label htmlFor="password">
               <div style={{ display: "flex", justifyContent: "space-between" }}>
                 <h4>Password</h4>
@@ -118,7 +130,7 @@ function Auth() {
               )}
             </label>
             {IsSignUp && (
-              <label htmlFor="check" style={{ display: "flex" }}>
+              <label htmlFor="check" style={{ display: "flex", gap: "20px" }}>
                 <input type="checkbox" id="check"></input>
                 <p style={{ fontSize: "13px" }}>
                   Opt-in to receive occasional product <br></br> updates, user

@@ -27,6 +27,7 @@ const pen = (
 function UserProfile() {
   const { id } = useParams();
   const users = useSelector((state) => state.usersReducer);
+  console.log(users);
   const currentProfile = users.filter((user) => user._id === id)[0];
   const currentUser = useSelector((state) => state.currentUserReducer);
   const [Switch, setSwitch] = useState(false);
@@ -48,6 +49,11 @@ function UserProfile() {
                 </Avatar>
                 <div className="user-name">
                   <h1>{currentProfile?.name}</h1>
+                  <p>
+                    {console.log(currentProfile)}
+                    {birthdayCake} Date of Birth{" "}
+                    {moment(currentProfile?.dob).format("MMMM Do YYYY")}
+                  </p>
                   <p>
                     {birthdayCake} Joined{" "}
                     {moment(currentProfile?.joinedOn).fromNow()}

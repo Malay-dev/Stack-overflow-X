@@ -28,13 +28,15 @@
 .user-details{
     display: flex;
     align-items: flex-start;
+
 }
 
 .user-name{
     padding-left: 20px;
+    
 }
 .user-name p {
-    display: inline-flex;
+    display: flex;
     align-items: center;
     gap: 10px;
     color: #7e7e7e;

@@ -9,12 +9,14 @@ export const getAllUsers = async (req, res) => {
       allUserDetails.push({
         _id: user._id,
         name: user.name,
+        dob: user.dob,
         about: user.about,
         tags: user.tags,
         joinedOn: user.joinedOn,
       });
     });
     res.status(200).json(allUserDetails);
+    console.log(allUserDetails);
   } catch (error) {
     console.log(error);
     res.status(404).json({ message: error.message });

@@ -3,7 +3,8 @@ import bcrypt from "bcryptjs";
 import users from "../models/auth.js";
 
 export const signup = async (req, res) => {
-  const { name, email, password } = req.body;
+  const { name, email, password, dob } = req.body;
+  console.log(req.body);
   try {
     const extinguisher = await users.findOne({ email });
     if (extinguisher) {
@@ -14,6 +15,7 @@ export const signup = async (req, res) => {
       name,
       email,
       password: hashedPassword,
+      dob,
     });
 
     const token = Jwt.sign(

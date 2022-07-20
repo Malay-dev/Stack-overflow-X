@@ -102,7 +102,7 @@ function QuestionDetails() {
 
   const user = useSelector((state) => state.currentUserReducer);
   const location = useLocation();
-  const url = `http://localhost:3000${location.pathname}`;
+  const url = `https://stack-overflow-x.netlify.app${location.pathname}`;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();

@@ -13,7 +13,7 @@ function DisplayAnswers({ question }) {
   const location = useLocation();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.currentUserReducer);
-  const url = `http://localhost:3000${location.pathname}`;
+  const url = `https://stack-overflow-x.netlify.app${location.pathname}`;
   const handleShare = () => {
     copy(url);
     alert("Copied URL :" + url);

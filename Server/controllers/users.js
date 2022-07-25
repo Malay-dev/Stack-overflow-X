@@ -13,10 +13,10 @@ export const getAllUsers = async (req, res) => {
         about: user.about,
         tags: user.tags,
         joinedOn: user.joinedOn,
+        location: user.location,
       });
     });
     res.status(200).json(allUserDetails);
-    console.log(allUserDetails);
   } catch (error) {
     console.log(error);
     res.status(404).json({ message: error.message });
@@ -35,7 +35,9 @@ export const updateProfile = async (req, res) => {
         $set: {
           name: req?.body?.Name,
           about: req?.body?.About,
+          dob: req?.body?.Dob,
           tags: req?.body?.Tags,
+          location: req?.body?.location,
         },
       },
       { new: true }

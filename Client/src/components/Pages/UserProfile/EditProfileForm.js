@@ -1,14 +1,20 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { updateProfile } from "../../../actions/users";
+import LocationForm from "./LocationForm";
+import moment from "moment";
 
 function EditProfileForm({ currentUser, setSwitch }) {
   const [Name, setName] = useState(currentUser?.result?.name);
   const [About, setAbout] = useState(currentUser?.result?.about);
   const [Tags, setTags] = useState("");
-  const dispatch = useDispatch();
+  const [Dob, setDob] = useState(currentUser?.result?.dob);
 
+  const dispatch = useDispatch();
+  const location = useSelector((state) => state.locationReducer);
+  console.log(location);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (Tags.length === 0) {
@@ -17,10 +23,20 @@ function EditProfileForm({ currentUser, setSwitch }) {
           Name,
           About,
           Tags: currentUser?.result?.tags,
+          Dob,
+          location,
         })
       );
     } else {
-      dispatch(updateProfile(currentUser?.result?._id, { Name, About, Tags }));
+      dispatch(
+        updateProfile(currentUser?.result?._id, {
+          Name,
+          About,
+          Dob,
+          Tags,
+          location,
+        })
+      );
     }
     setSwitch(false);
   };
@@ -38,6 +54,20 @@ function EditProfileForm({ currentUser, setSwitch }) {
             value={Name}
             onChange={(e) => setName(e.target.value)}
           />
+        </label>
+        <label htmlFor="Date of Birth">
+          <h3>Date of Birth</h3>
+          <input
+            type="date"
+            name="date_of_birth"
+            id="Date of Birth"
+            value={moment(Dob).format("YYYY-MM-DD")}
+            onChange={(e) => setDob(e.target.value)}
+          />
+        </label>
+        <label htmlFor="location">
+          <h3>Set Location</h3>
+          <LocationForm></LocationForm>
         </label>
         <label htmlFor="about">
           <h3>About me</h3>

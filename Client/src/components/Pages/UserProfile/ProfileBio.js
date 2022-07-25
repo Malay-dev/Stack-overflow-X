@@ -25,6 +25,18 @@ function ProfileBio({ currentProfile }) {
           <p>No Bio Found</p>
         )}
       </div>
+      <div>
+        <h4>Location</h4>
+        {currentProfile?.location?.country ? (
+          <>
+            <p>Country : {currentProfile?.location?.country}</p>
+            <p>State : {currentProfile?.location?.state}</p>
+            <p>City : {currentProfile?.location?.city}</p>
+          </>
+        ) : (
+          <p>User has not provided location!!!</p>
+        )}
+      </div>
     </div>
   );
 }

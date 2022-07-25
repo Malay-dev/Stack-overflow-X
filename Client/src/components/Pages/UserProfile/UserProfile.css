@@ -82,7 +82,12 @@
     border: solid 1px #dbd9d9;
     width: 50%;
 }
-
+.selector{
+    
+    margin-bottom: 20px;
+    
+    width: 50%;
+}
 .user-submit-btn{
     padding: 14px 10px;
     background-color: #0a95ff;
@@ -105,3 +110,4 @@
     margin-left: 10px;
     cursor: pointer;
 }
+

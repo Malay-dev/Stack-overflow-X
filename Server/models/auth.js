@@ -8,6 +8,7 @@ const userSchema = mongoose.Schema({
   about: { type: String },
   tags: { type: [String] },
   joinedOn: { type: Date, default: Date.now },
+  location: { country: String, state: String, city: String },
 });
 
 export default mongoose.model("User", userSchema);

@@ -7,6 +7,8 @@ const questionsReducer = (state = { data: null }, action) => {
       return { ...state, data: action.payload };
     case "POST_ANSWER":
       return { ...state };
+    case "POST_COMMENT":
+      return { ...state };
     default:
       return state;
   }

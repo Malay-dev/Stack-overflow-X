@@ -18,6 +18,14 @@ const questionSchema = mongoose.Schema({
       answeredOn: { type: Date, default: Date.now },
     },
   ],
+  comment: [
+    {
+      commentBody: String,
+      userCommented: String,
+      userId: String,
+      commentedOn: { type: Date, default: Date.now },
+    },
+  ],
 });
 
 export default mongoose.model("Question", questionSchema);

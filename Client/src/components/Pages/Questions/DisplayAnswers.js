@@ -1,19 +1,23 @@
 import React from "react";
-import { useEffect } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useLocation, useParams, useNavigate } from "react-router-dom";
 import copy from "copy-to-clipboard";
 import moment from "moment";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import { deleteAnswer } from "../../../actions/questions";
+
 import Avatar from "../../Avatar/Avatar";
+import DisplayComments from "./DisplayComments";
 
 function DisplayAnswers({ question }) {
   const { id } = useParams();
   const location = useLocation();
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const user = useSelector((state) => state.currentUserReducer);
   const url = `https://stack-overflow-x.netlify.app${location.pathname}`;
+
   const handleShare = () => {
     copy(url);
     alert("Copied URL :" + url);
@@ -21,6 +25,7 @@ function DisplayAnswers({ question }) {
   const handleDelete = (answerId, numAnswers) => {
     dispatch(deleteAnswer(id, answerId, numAnswers - 1));
   };
+
   useEffect(() => {}, [question]);
   return (
     <div>

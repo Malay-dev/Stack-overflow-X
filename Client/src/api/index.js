@@ -33,6 +33,12 @@ export const postAnswer = (id, numAnswers, answerBody, userAnswered, userId) =>
   });
 export const deleteAnswer = (id, answerId, numAnswers) =>
   API.patch(`/answers/delete/${id}`, { answerId, numAnswers });
+export const postComment = (id, commentBody, userCommented, userId) =>
+  API.patch(`/comments/post/${id}`, {
+    commentBody,
+    userCommented,
+    userId,
+  });
 
 /*------------------------------------------------------------------------------*/
 export const updateProfile = (id, updateData) =>

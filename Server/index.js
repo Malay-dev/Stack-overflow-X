@@ -6,6 +6,7 @@ import dotenv from "dotenv";
 import userRoutes from "./routes/users.js";
 import questionRoutes from "./routes/questions.js";
 import answerRoutes from "./routes/answers.js";
+import commentRoutes from "./routes/comments.js";
 
 const app = express();
 dotenv.config();
@@ -25,6 +26,7 @@ const DATABASE_URL = process.env.CONNECTION_URL;
 app.use("/user", userRoutes);
 app.use("/questions", questionRoutes);
 app.use("/answers", answerRoutes);
+app.use("/comments", commentRoutes);
 mongoose
   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() =>

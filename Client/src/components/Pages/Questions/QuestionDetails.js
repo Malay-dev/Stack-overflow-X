@@ -2,6 +2,7 @@ import React from "react";
 import { useParams, Link, useNavigate, useLocation } from "react-router-dom";
 
 import DisplayAnswers from "./DisplayAnswers";
+import DisplayComments from "./DisplayComments";
 import Avatar from "../../Avatar/Avatar";
 
 import moment from "moment";
@@ -15,6 +16,7 @@ import {
   postAnswer,
   voteQuestion,
 } from "../../../actions/questions";
+import { postComment } from "../../../actions/questions";
 
 const upVote = (
   <svg
@@ -128,7 +130,28 @@ function QuestionDetails() {
       }
     }
   };
-
+  const [comment, setComment] = useState("");
+  const handleCommentSubmit = (e) => {
+    console.log(comment);
+    e.preventDefault();
+    if (user == null) {
+      alert("Login or SignUp to post a comment");
+      navigate("/Auth");
+    } else {
+      if (comment === "") {
+        alert("Enter an comment before submitting");
+      } else {
+        dispatch(
+          postComment({
+            id,
+            commentBody: comment,
+            userCommented: user?.result?.name,
+            userId: user?.result?._id,
+          })
+        );
+      }
+    }
+  };
   const handleShare = () => {
     copy(url);
     alert("Copied URL :" + url);
@@ -212,6 +235,30 @@ function QuestionDetails() {
                       question={question}></DisplayAnswers>
                   </section>
                 )}
+                <section>
+                  <h4>Comments</h4>
+                  <DisplayComments
+                    key={question._id}
+                    question={question}></DisplayComments>
+                  <section className="post-comment-container">
+                    <form
+                      onSubmit={(e) => {
+                        handleCommentSubmit(e);
+                      }}>
+                      <input
+                        type="text"
+                        name="comment"
+                        id="comment"
+                        className="input-comment"
+                        placeholder="Add a comment"
+                        autoComplete="off"
+                        onChange={(e) => {
+                          setComment(e.target.value);
+                        }}
+                      />
+                    </form>
+                  </section>
+                </section>
                 <section className="post-ans-container">
                   <h3>Your Answers</h3>
                   <form

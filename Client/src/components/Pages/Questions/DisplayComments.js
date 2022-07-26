@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 function DisplayComments({ question }) {
   return (
     <div>
-      {console.log(question.comment)}
       {question?.comment?.map((comment) => (
         <div className="display-comments" key={comment._id}>
           <div>

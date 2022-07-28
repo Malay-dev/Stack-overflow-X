@@ -3,9 +3,9 @@ import { useState, useEffect } from "react";
 import Select from "react-select";
 import { Country, State, City } from "country-state-city";
 import { useDispatch } from "react-redux";
-import setLocation from "../../../actions/location";
+import { setLocation } from "../../../actions/location";
 
-const LocationForm = (setfirst) => {
+const LocationForm = () => {
   const [country, setCountry] = useState("India");
   const [state, setState] = useState("");
   const [city, setCity] = useState("");

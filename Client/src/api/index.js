@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://stack-overflow-x.herokuapp.com" });
+const API = axios.create({ baseURL: "http://localhost:5000" }); //https://stack-overflow-x.herokuapp.com
 
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("Profile")) {
@@ -43,3 +43,5 @@ export const postComment = (id, commentBody, userCommented, userId) =>
 /*------------------------------------------------------------------------------*/
 export const updateProfile = (id, updateData) =>
   API.patch(`/user/update/${id}`, updateData);
+
+export const getLocation = (id) => API.get(`/location/get`);

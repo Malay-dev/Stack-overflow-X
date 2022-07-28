@@ -1,6 +1,22 @@
 import React from "react";
 
+import { getLocation } from "../../../actions/location";
+import { updateProfile } from "../../../actions/users";
+import { useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
+
 function ProfileBio({ currentProfile }) {
+  const dispatch = useDispatch();
+  const currentUser = useSelector((state) => state.currentUserReducer);
+  const location = useSelector((state) => state.locationReducer);
+  const handleLocClick = () => {
+    dispatch(getLocation());
+    dispatch(
+      updateProfile(currentUser?.result?._id, {
+        location: location?.data,
+      })
+    );
+  };
   return (
     <div>
       <div>
@@ -36,6 +52,11 @@ function ProfileBio({ currentProfile }) {
         ) : (
           <p>User has not provided location!!!</p>
         )}
+        <div>
+          <button className="location-btn" onClick={handleLocClick}>
+            Get Location
+          </button>
+        </div>
       </div>
     </div>
   );

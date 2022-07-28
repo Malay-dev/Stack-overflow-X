@@ -7,6 +7,7 @@ import userRoutes from "./routes/users.js";
 import questionRoutes from "./routes/questions.js";
 import answerRoutes from "./routes/answers.js";
 import commentRoutes from "./routes/comments.js";
+import locationRoutes from "./routes/location.js";
 
 const app = express();
 dotenv.config();
@@ -27,6 +28,8 @@ app.use("/user", userRoutes);
 app.use("/questions", questionRoutes);
 app.use("/answers", answerRoutes);
 app.use("/comments", commentRoutes);
+app.use("/location", locationRoutes);
+
 mongoose
   .connect(DATABASE_URL, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() =>

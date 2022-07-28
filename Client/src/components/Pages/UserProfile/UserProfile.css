@@ -111,3 +111,13 @@
     cursor: pointer;
 }
 
+.location-btn{
+    
+    padding: 10px;
+    background-color: #009dff;
+    border: solid 1px #009dff;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.3s;
+}

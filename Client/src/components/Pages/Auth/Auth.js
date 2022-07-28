@@ -87,7 +87,7 @@ function Auth() {
             </label>
             {IsSignUp && (
               <label htmlFor="date">
-                <h4>Display Name</h4>
+                <h4>Date of birth</h4>
                 <input
                   type="date"
                   name="date"

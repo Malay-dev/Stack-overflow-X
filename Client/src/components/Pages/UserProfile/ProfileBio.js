@@ -1,19 +1,35 @@
 import React from "react";
 
-import { getLocation } from "../../../actions/location";
 import { updateProfile } from "../../../actions/users";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 function ProfileBio({ currentProfile }) {
   const dispatch = useDispatch();
   const currentUser = useSelector((state) => state.currentUserReducer);
-  const location = useSelector((state) => state.locationReducer);
+  const [locData, setlocData] = useState();
+  const loc = async () => {
+    let response = await axios.get(
+      "https://ipinfo.io/json?token=8ba3f84c7d6dcc"
+    );
+    const data = await response;
+    let tmp = {
+      country: data?.data.country,
+      state: data?.data.region,
+      city: data?.data.city,
+    };
+    setlocData(tmp);
+  };
+
   const handleLocClick = () => {
-    dispatch(getLocation());
+    loc();
+    console.log(locData);
+
     dispatch(
       updateProfile(currentUser?.result?._id, {
-        location: location?.data,
+        location: locData,
       })
     );
   };

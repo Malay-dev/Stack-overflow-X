@@ -64,7 +64,7 @@ export const deleteAnswer = (id, answerId, numAnswers) => async (dispatch) => {
     console.log(error);
   }
 };
-
+/*-----------------------------------------------------------------------------*/
 export const postComment = (commentData) => async (dispatch) => {
   try {
     const { id, commentBody, userCommented, userId } = commentData;
@@ -76,6 +76,27 @@ export const postComment = (commentData) => async (dispatch) => {
       userId
     );
     dispatch({ type: "POST_COMMENT", payload: data });
+    dispatch(fetchAllQuestions());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteComment = (id, commentId) => async (dispatch) => {
+  try {
+    const { data } = await api.deleteComment(id, commentId);
+    dispatch(fetchAllQuestions());
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const editComment = (id, editedData) => async (dispatch) => {
+  try {
+    console.log(editedData);
+    const { data } = await api.editComment(id, editedData);
+    console.log(data);
+    dispatch({ type: "EDIT_COMMENT", payload: data });
     dispatch(fetchAllQuestions());
   } catch (error) {
     console.log(error);

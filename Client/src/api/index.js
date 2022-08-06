@@ -1,7 +1,6 @@
 import axios from "axios";
 
-const API = axios.create({ baseURL: "https://stack-overflow-x.herokuapp.com" }); //http://localhost:5000/
-
+const API = axios.create({ baseURL: "http://localhost:5000" }); //https://stack-overflow-x.herokuapp.com
 API.interceptors.request.use((req) => {
   if (localStorage.getItem("Profile")) {
     req.headers.authorization = `Bearer ${
@@ -33,13 +32,17 @@ export const postAnswer = (id, numAnswers, answerBody, userAnswered, userId) =>
   });
 export const deleteAnswer = (id, answerId, numAnswers) =>
   API.patch(`/answers/delete/${id}`, { answerId, numAnswers });
+/*------------------------------------------------------------------------------*/
 export const postComment = (id, commentBody, userCommented, userId) =>
   API.patch(`/comments/post/${id}`, {
     commentBody,
     userCommented,
     userId,
   });
-
+export const deleteComment = (id, commentId) =>
+  API.patch(`/comments/delete/${id}`, { commentId });
+export const editComment = (id, editedData) =>
+  API.patch(`/comments/edit/${id}`, editedData);
 /*------------------------------------------------------------------------------*/
 export const updateProfile = (id, updateData) =>
   API.patch(`/user/update/${id}`, updateData);

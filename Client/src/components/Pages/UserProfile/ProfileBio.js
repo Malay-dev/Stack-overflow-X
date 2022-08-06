@@ -69,7 +69,7 @@ function ProfileBio({ currentProfile }) {
           <p>User has not provided location!!!</p>
         )}
         <div>
-          <button className="location-btn" onClick={handleLocClick}>
+          <button className="location-btn" onClick={handleLocClick()}>
             Get Location
           </button>
         </div>

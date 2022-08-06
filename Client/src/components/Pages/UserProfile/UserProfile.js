@@ -59,8 +59,8 @@ function UserProfile() {
                 <div className="user-name">
                   <h1>{currentProfile?.name}</h1>
                   <p>
-                    {birthdayCake} Date of Birth{" "}
-                    {moment(currentProfile?.dob).format("MMMM Do YYYY")}
+                    {birthdayCake} Age{" "}
+                    {moment().diff(currentProfile?.dob, "years")} years
                   </p>
                   <p>
                     {calendar} Joined{" "}

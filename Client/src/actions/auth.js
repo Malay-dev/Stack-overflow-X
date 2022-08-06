@@ -8,6 +8,7 @@ export const signup = (authData, navigate) => async (dispatch) => {
     dispatch({ type: "AUTH", data });
     dispatch(setCurrentUser(JSON.parse(localStorage.getItem("Profile"))));
     navigate("/");
+    window.location.reload();
   } catch (error) {
     console.log(error);
   }
